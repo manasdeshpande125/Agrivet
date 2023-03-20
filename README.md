@@ -26,4 +26,18 @@ Glimpses of implementation:
 3. Manager Role:-
 
 => Home page (Confirmed testdrives) 
+![image](https://user-images.githubusercontent.com/89973309/226270328-0d468cc1-7f8d-428b-8226-56dc0ea8078e.png)
+
+=> Adressing pending testdrives:
+![image](https://user-images.githubusercontent.com/89973309/226270493-d46d5708-55f4-4242-8170-4812d3d34dba.png)
+![image](https://user-images.githubusercontent.com/89973309/226270513-0af110bf-2003-473c-a3e1-2a575a0f306b.png)
+![image](https://user-images.githubusercontent.com/89973309/226270534-00b8d0ee-cfa4-498a-acf7-b8c41088aa0a.png)
+
+=> View legacy testdrives:
+![image](https://user-images.githubusercontent.com/89973309/226270658-26adf766-f463-478b-848c-c962ee2c0bf1.png)
+
+=> Manage Dealership resources:
+![image](https://user-images.githubusercontent.com/89973309/226270687-3843f2b0-84dc-4dfe-bbf6-d90d7d6e6320.png)
+
+
 
