@@ -10,5 +10,20 @@ Our Testdrive management system consists of two user roles (customer, manager). 
 
 Glimpses of implementation:
 
-1. Login/registration:
+1. Login/registration:-
 ![image](https://user-images.githubusercontent.com/89973309/226269705-934f9bf2-666b-4fa4-b208-cd09057cb8de.png)
+![image](https://user-images.githubusercontent.com/89973309/226269824-793a0707-63b4-45cf-9ca2-94cf1b32afad.png)
+
+2. Customer Role:-
+
+=> Home Page:
+![image](https://user-images.githubusercontent.com/89973309/226269902-b3e8a347-f3f5-4fbd-8dce-63df447550a2.png)
+
+=> Track testdrives:
+![image](https://user-images.githubusercontent.com/89973309/226270105-90166ca7-f660-4e20-855a-d10bac5dcd9f.png)
+![image](https://user-images.githubusercontent.com/89973309/226270114-b4831987-9404-4a34-8054-d84475b2a81d.png)
+
+3. Manager Role:-
+
+=> Home page (Confirmed testdrives) 
+
