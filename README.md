@@ -52,7 +52,11 @@ Glimpses of implementation:
 
 
 Entity-Relationship Diagram:
+
 This diagram gives a breif description of our database,engineered in a way to ensure smooth working of above mentioned features.
+
+
+
 
 ![WhatsApp Image 2022-11-03 at 2 15 17 AM](https://user-images.githubusercontent.com/89973309/226273827-8acc6b85-3861-4f34-9fc4-18050d37cc36.jpeg)
 
