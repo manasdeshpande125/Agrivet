@@ -1,14 +1,14 @@
-import React , {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import Axios from 'axios';
 import Card from "@material-ui/core/Card";
 import './styles/table.css';
 
-import {CustomerNavBar} from "../components/CustomerNavBar";
+import { CustomerNavBar } from "../components/CustomerNavBar";
 import './styles/style.css';
 
 
-export const TrackTestDrive = ()=> {
+export const TrackTestDrive = () => {
     //Initialization
     const [userId, setUserId] = useState(0);
     const [userName, setuserName] = useState('');
@@ -18,12 +18,12 @@ export const TrackTestDrive = ()=> {
 
     Axios.defaults.withCredentials = true;
 
-    
+
     //Required methods
-    useEffect(()=> {
+    useEffect(() => {
         Axios.get("http://localhost:3005/registration/login").then((response) => {
             console.log("after cookie");
-            if(response.data.loggedIn){
+            if (response.data.loggedIn) {
                 console.log(response);
                 setUserId(response.data.user[0].cid);
                 setuserName(response.data.user[0].username);
@@ -32,31 +32,31 @@ export const TrackTestDrive = ()=> {
     }, []);
 
 
-    const ShowTrack = (id)=> {
-        Axios.post("http://localhost:3005/customer/track",{
-            id : userId
-        }).then((response)=> {
+    const ShowTrack = (id) => {
+        Axios.post("http://localhost:3005/customer/track", {
+            id: userId
+        }).then((response) => {
             setActive(response.data);
             console.log(response);
         });
     };
 
-    const ShowHistory = (id)=> {
-        Axios.post("http://localhost:3005/customer/history",{
-            id : userId
-        }).then((response)=> {
-            
+    const ShowHistory = (id) => {
+        Axios.post("http://localhost:3005/customer/history", {
+            id: userId
+        }).then((response) => {
+
             setHistory(response.data);
             console.log(response);
         });
     };
 
-    const Cancel = (id)=> {
-        Axios.delete(`http://localhost:3005/customer/cancel/${id}`).then((response)=> {
-            if(response.data[0].cancelStatus){
+    const Cancel = (id) => {
+        Axios.delete(`http://localhost:3005/customer/cancel/${id}`).then((response) => {
+            if (response.data[0].cancelStatus) {
                 alert('Cancelled successfully');
             }
-            else{
+            else {
                 alert('Cancel unsuccessful');
             }
         });
@@ -67,67 +67,67 @@ export const TrackTestDrive = ()=> {
 
     const column_history = [
         {
-            name : 'Model',
-            selector : (row) => row.model
+            name: 'Animal',
+            selector: (row) => row.model
         },
+        /*{
+            name: 'Transmission Type',
+            selector: (row) => row.type
+        },*/
         {
-            name : 'Transmission Type',
-            selector : (row) => row.type
+            name: 'Booking Date',
+            selector: (row) => row.td_date
         },
+        /*{
+            name: 'Booking Slot',
+            selector: (row) => row.slot_name
+        },*/
         {
-            name : 'Booking Date',
-            selector : (row) => row.td_date
-        },
-        {
-            name : 'Booking Slot',
-            selector : (row) => row.slot_name
-        },
-        {
-            name : 'Executive Name',
-            selector : (row) => row.exe_name
+            name: 'Doctor Name',
+            selector: (row) => row.exe_name
         }
         ,
         {
-            name : 'Executive MobNo',
-            selector : (row) => row.mobno
+            name: 'Doctor MobNo',
+            selector: (row) => row.mobno
         }
 
     ];
 
     const column_track = [
         {
-            name : 'Model',
-            selector : (row) => row.model
+            name: 'Animal',
+            selector: (row) => row.model
+        },
+        /*{
+            name: 'Transmission Type',
+            selector: (row) => row.type
+        },*/
+        {
+            name: 'Booking Date',
+            selector: (row) => row.td_date
         },
         {
-            name : 'Transmission Type',
-            selector : (row) => row.type
+            name: 'Booking Slot',
+            selector: (row) => row.td_slot
         },
-        {
-            name : 'Booking Date',
-            selector : (row) => row.td_date
-        },
-        {
-            name : 'Booking Slot',
-            selector : (row) => row.td_slot
-        },
-        {
-            name : 'Executive Name',
-            selector : (row) => row.exename
+        /*{
+            name: 'Doctor Name',
+            selector: (row) => row.exename
         }
         ,
         {
-            name : 'Executive MobNo',
-            selector : (row) => row.exemobno
+            name: 'Doctor MobNo',
+            selector: (row) => row.exemobno
+        },*/
+        {
+            name: 'Status',
+            selector: (row) => row.status
         },
         {
-            name : 'Status',
-            selector : (row) => row.status
-        },
-        {
-            name : 'Cancel-Testdrive',
-            cell : (row)=> (
-                <button onClick={()=> {Cancel(row.tid)}}>cancel</button>
+            name: 'Cancel-Appointment',
+            cell: (row) => (
+                <button onClick={() => { Cancel(row.tid) }}>cancel</button>
             )
         }
 
@@ -139,39 +139,39 @@ export const TrackTestDrive = ()=> {
 
     return (
         <div className='bck'>
-            
-            {<CustomerNavBar/>}
-            
+
+            {<CustomerNavBar />}
+
             <div className='profile'>
-            <button onClick={ShowHistory}>ShowHistory</button>
-            <button onClick={ShowTrack}>ShowTrack</button>
+                <button onClick={ShowHistory}>ShowHistory</button>
+                <button onClick={ShowTrack}>ShowTrack</button>
             </div>
             <div >
-            <div className='head'><h2>Track active testdrive</h2></div>
+                <div className='head'><h2>Track active Appointments</h2></div>
                 <div className='table'>
-                <Card>
-                <DataTable
-                columns={ column_track}
-                data = {active}
-                />
-                </Card>
+                    <Card>
+                        <DataTable
+                            columns={column_track}
+                            data={active}
+                        />
+                    </Card>
                 </div>
             </div>
-<br></br>
-            
+            <br></br>
+
             <div>
 
-             <div className='head'><h2>Past testdrive</h2></div>
-             <div className='table'>
-                <Card>
-                <DataTable
-                columns={ column_history}
-                data = {history}
-                />
-                </Card>
+                <div className='head'><h2>Past Appointments</h2></div>
+                <div className='table'>
+                    <Card>
+                        <DataTable
+                            columns={column_history}
+                            data={history}
+                        />
+                    </Card>
                 </div>
             </div>
-            
+
         </div>
     );
 }

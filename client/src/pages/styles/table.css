@@ -1,12 +1,14 @@
-.table{
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-weight: 400;
-    font: size 30px; ;
-    line-height: 1.42857;
-    text-rendering: optimizeLegibility;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;&display=swap');
+
+.table {
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.42857;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

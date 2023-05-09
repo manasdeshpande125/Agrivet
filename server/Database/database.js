@@ -1,10 +1,10 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const db = mysql.createConnection({
-    user : "root",
-    host : "localhost",
-    password : "Chinmaypb@1032",
-    database : "testdrivedb",
+    user: "root",
+    host: "localhost",
+    password: "1234",
+    database: "docapp",
     multipleStatements: true,
     dateStrings: true
 });

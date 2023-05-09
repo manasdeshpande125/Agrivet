@@ -11,68 +11,68 @@ const cors = require('cors');
 //Initialization
 
 router.use(cors({
-    origin : ["http://localhost:3000"],
-    methods : ["GET", "POST", "PUT", "DELETE"],
-    credentials : true
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
 
 router.use(cookieParser());
 
-router.use(bodyParser.urlencoded({extended : true}));
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.use(
     session({
-        key : "userId",
-        secret : "subscribe",
-        resave : false,
-        saveUninitialized : false,
-        cookie : {
-            expires : 	10800000 // 3 hrs expiry of cookie in browser
-        }, 
+        key: "userId",
+        secret: "subscribe",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 10800000 // 3 hrs expiry of cookie in browser
+        },
     })
-); 
+);
 
 //routes
 
-router.post("/addExe", (req, res)=>{
+router.post("/addExe", (req, res) => {
     const name = req.body.exeName;
     const mobNo = req.body.exeMobNo;
 
-    db.query('insert into executive (exename, exemobno) values(?, ?)', [name, mobNo], (err, result)=> {
-        if(err){
+    db.query('insert into executive (exename, exemobno) values(?, ?)', [name, mobNo], (err, result) => {
+        if (err) {
             console.Console.log(err);
-            res.send({status : "false"});
+            res.send({ status: "false" });
         }
-        else{
-            res.send({status : "true"});
+        else {
+            res.send({ status: "true" });
         }
     });
 });
 
-router.get("/exeDetails", (req, res)=> {
-      db.query('select * from executive where eid <> 18', (err, result)=> {
-        if(err){
+router.get("/exeDetails", (req, res) => {
+    db.query('select * from executive where eid <> 18', (err, result) => {
+        if (err) {
             console.log(err);
-            res.send({status : "false"});
+            res.send({ status: "false" });
         }
-        else{
+        else {
             console.log("res send successfully");
             res.send(result);
         }
-      });
+    });
 });
 
-router.put("/updateExe", (req, res)=> {
+router.put("/updateExe", (req, res) => {
     const id = req.body.exeId;
     const name = req.body.exeName;
     const mobno = req.body.exeMobNo;
     console.log("reached backend successfully");
-    db.query('update executive set exename = ?, exemobno = ? where eid = ?', [name, mobno, id], (err, result)=>{
-        if(err){
+    db.query('update executive set exename = ?, exemobno = ? where eid = ?', [name, mobno, id], (err, result) => {
+        if (err) {
             console.log(err);
-            res.send({status : "false"});
+            res.send({ status: "false" });
         }
-        else{
+        else {
             console.log("got db result");
             console.log("updated successfully");
             res.send(result);
@@ -81,32 +81,33 @@ router.put("/updateExe", (req, res)=> {
     });
 });
 
-router.delete("/deleteExe/:id", (req, res)=>{
+router.delete("/deleteExe/:id", (req, res) => {
     const id = req.params.id;
     console.log("reached backend successfully");
-    db.query('delete from executive where eid = ?', id, (err, result)=> {
-        if(err){
+    db.query('delete from executive where eid = ?', id, (err, result) => {
+        if (err) {
             console.log(err);
-            res.send({status : "false"});
+            res.send({ status: "false" });
         }
-        else{
-            res.send({status : "true"});
+        else {
+            res.send({ status: "true" });
             console.log("send result successfully ");
         }
     });
 });
 
-router.post("/availExe", (req, res)=>{
-    const tdate = req.body.date.substring(0,10);
+router.post("/availExe", (req, res) => {
+    const tdate = req.body.date.substring(0, 10);
     const tslot = req.body.slot;
     console.log(tdate);
-    db.query('select * from executive where eid NOT IN (select eid from exesch where td_date = ? and td_slot = ?) and eid <> 18', [tdate, tslot], (err, result)=> {
+    //db.query('select * from executive where eid NOT IN (select eid from exesch where td_date = ? and td_slot = ?) and eid <> 18', [tdate, tslot], (err, result)=> {
+    db.query('select * from executive where eid NOT IN (select eid from exesch where td_date = ? and td_slot = ?)', [tdate, tslot], (err, result) => {
         console.log("got response from backend");
-        if(err){
+        if (err) {
             console.log(err);
-            res.send({status : "false"});
+            res.send({ status: "false" });
         }
-        else{
+        else {
             res.send(result);
             console.log("res send successfully");
         }
