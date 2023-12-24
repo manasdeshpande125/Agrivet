@@ -1,0 +1,26 @@
+version: '3'
+services:
+  server:
+    image: my-node-app
+    container_name: server-container
+    ports:
+      - "3005:3005"
+    networks:
+      - my_network
+
+  client:
+    image: react
+    container_name: client-container
+    ports:
+      - "80:80"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+    #docker-compose up =>Command to run compose.yml
+    #docker build -t react .
+    #docker run -p 5000:5000 my-react-app
+    #docker run -p 3005:3005 my-node-app
+    #docker build -t my-node-app .
